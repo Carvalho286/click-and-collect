@@ -15,6 +15,10 @@ let dishSchema = new Schema({
     type: "Number",
     required: true,
   },
+  sides: {
+    type: ["String"],
+    required: false,
+  },
   categories: {
     type: ["String"],
     required: true,
@@ -29,6 +33,8 @@ let dishSchema = new Schema({
     required: false,
   },
 });
+
+dishSchema.index({ name: 'text' });
 
 let dish = mongoose.model("Dish", dishSchema);
 
