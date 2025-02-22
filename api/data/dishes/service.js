@@ -6,6 +6,7 @@ function DishService(DishModel) {
     update,
     remove,
     findByCategory,
+    findByName,
     changeAvailability,
   };
 
@@ -59,10 +60,36 @@ function DishService(DishModel) {
     });
   }
 
-  function findByCategory(category) {
+  function findByCategory(categories) {
     return new Promise((resolve, reject) => {
-      DishModel.find({ categories: category }, function (err, dishes) {
-        if (err) reject(err);
+      if (Array.isArray(categories) && categories.length > 0) {
+        DishModel.find(
+          {
+            categories: {
+              $in: categories.map((cat) => new RegExp(`^${cat}$`, "i")),
+            },
+          },
+          function (err, dishes) {
+            if (err) return reject(err);
+            resolve(dishes);
+          }
+        );
+      } else {
+        reject(new Error("Invalid categories array"));
+      }
+    });
+  }
+
+  function findByName(name) {
+    return new Promise((resolve, reject) => {
+      if (typeof name !== "string") {
+        return reject(new Error("Invalid name parameter"));
+      }
+
+      const regex = new RegExp("^" + name, "i"); 
+
+      DishModel.find({ name: { $regex: regex } }, function (err, dishes) {
+        if (err) return reject(err);
         resolve(dishes);
       });
     });
