@@ -3,6 +3,7 @@ function GuestService(GuestModel) {
     create,
     findAll,
     findById,
+    findByField,
     removeById,
     clear
   };
@@ -30,6 +31,25 @@ function GuestService(GuestModel) {
       GuestModel.findById(id, function (err, guest) {
         if (err) reject(err);
         resolve(guest);
+      });
+    });
+  }
+
+  function findByField(field, value) {
+    return new Promise((resolve, reject) => {
+      if (typeof value !== "string") {
+        return reject(new Error(`Invalid ${field} parameter`));
+      }
+
+      const regex = new RegExp(value, "i");
+
+      if (!["name", "email", "phone"].includes(field)) {
+        return reject(new Error("Invalid search field"));
+      }
+
+      GuestModel.find({ [field]: { $regex: regex } }, function (err, guests) {
+        if (err) return reject(err);
+        resolve(guests);
       });
     });
   }
