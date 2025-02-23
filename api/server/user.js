@@ -28,20 +28,23 @@ function UserRouter() {
 
   router
     .route("/:userId")
-    .get(Users.authorize([scopes["admin"], scopes["chef"], scopes["employee"]]), function (req, res, next) {
-      let userId = req.params.userId;
+    .get(
+      Users.authorize([scopes["admin"], scopes["chef"], scopes["employee"]]),
+      function (req, res, next) {
+        let userId = req.params.userId;
 
-      Users.findById(userId)
-        .then((lol) => {
-          res.status(200);
-          res.send(lol);
-          next();
-        })
-        .catch((err) => {
-          res.status(404);
-          next();
-        });
-    })
+        Users.findById(userId)
+          .then((lol) => {
+            res.status(200);
+            res.send(lol);
+            next();
+          })
+          .catch((err) => {
+            res.status(404);
+            next();
+          });
+      }
+    )
     .put(Users.authorize([scopes["admin"]]), function (req, res, next) {
       let userId = req.params.userId;
       let body = req.body;
@@ -70,6 +73,33 @@ function UserRouter() {
           next();
         });
     });
+
+  router.route("/search").get(function (req, res, next) {
+    const { field, value } = req.query;
+
+    if (!field || !value) {
+      return res
+        .status(400)
+        .json({ message: "Both 'field' and 'value' are required" });
+    }
+
+    if (!["name", "email", "phone"].includes(field)) {
+      return res.status(400).json({
+        message: "Invalid search field. Use 'name', 'email', or 'phone'.",
+      });
+    }
+
+    Users.findByField(field, value)
+      .then((users) => {
+        res.status(200).json(users);
+      })
+      .catch((err) => {
+        console.error("Error searching users:", err);
+        res
+          .status(500)
+          .json({ message: "Error searching users", error: err.message });
+      });
+  });
 
   router
     .route("/me")
@@ -137,7 +167,7 @@ function UserRouter() {
         });
     });
 
-    return router;
+  return router;
 }
 
 module.exports = UserRouter;
