@@ -28,7 +28,7 @@ function UserRouter() {
 
   router
     .route("/:userId")
-    .get(Users.authorize([scopes["admin"]]), function (req, res, next) {
+    .get(Users.authorize([scopes["admin"], scopes["chef"], scopes["employee"]]), function (req, res, next) {
       let userId = req.params.userId;
 
       Users.findById(userId)

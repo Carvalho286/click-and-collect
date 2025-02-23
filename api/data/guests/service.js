@@ -4,6 +4,7 @@ function GuestService(GuestModel) {
     findAll,
     findById,
     removeById,
+    clear
   };
 
   function create(guest) {
@@ -36,6 +37,15 @@ function GuestService(GuestModel) {
   function removeById(id) {
     return new Promise(function (resolve, reject) {
       GuestModel.findByIdAndRemove(id, function (err) {
+        if (err) reject(err);
+        resolve();
+      });
+    });
+  }
+
+  function clear() {
+    return new Promise(function (resolve, reject) {
+      GuestModel.deleteMany({}, function (err) {
         if (err) reject(err);
         resolve();
       });
