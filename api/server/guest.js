@@ -16,10 +16,10 @@ function GuestRouter() {
     let guest = req.body;
     Guests.create(guest)
       .then((newGuest) => {
-        res.status(201).send(newGuest); 
+        res.status(201).send(newGuest);
       })
       .catch((err) => {
-        res.status(400).send({ error: "Bad request" }); 
+        res.status(400).send({ error: "Bad request" });
       });
   });
 
@@ -36,7 +36,7 @@ function GuestRouter() {
             res.status(200).send(guests);
           })
           .catch((err) => {
-            res.status(404).send({ error: "Guests not found" }); 
+            res.status(404).send({ error: "Guests not found" });
           });
       }
     )
@@ -46,7 +46,7 @@ function GuestRouter() {
         let guest = req.body;
         Guests.create(guest)
           .then((newGuest) => {
-            res.status(201).send(newGuest); 
+            res.status(201).send(newGuest);
           })
           .catch((err) => {
             res.status(400).send({ error: "Bad request" });
@@ -59,12 +59,47 @@ function GuestRouter() {
     .delete(Users.authorize([scopes["admin"]]), function (req, res) {
       Guests.clear()
         .then(() => {
-          res.status(204).send("Guests deleted successfully"); 
+          res.status(204).send("Guests deleted successfully");
         })
         .catch((err) => {
           res.status(404).json({ error: "Failed to delete guests" });
         });
     });
+
+  router
+    .route("/search")
+    .get(
+      Users.authorize([scopes["admin"], scopes["chef"], scopes["employee"]]),
+      function (req, res, next) {
+        const { field, value } = req.query;
+
+        if (!field || !value) {
+          return res
+            .status(400)
+            .json({ message: "Both 'field' and 'value' are required" });
+        }
+
+        if (!["name", "email", "phone"].includes(field)) {
+          return res.status(400).json({
+            message: "Invalid search field. Use 'name', 'email', or 'phone'.",
+          });
+        }
+
+        Guests.findByField(field, value)
+          .then((guests) => {
+            if (guests.length === 0) {
+              return res.status(404).json({ message: "Guest not found" });
+            }
+            res.status(200).json(guests);
+          })
+          .catch((err) => {
+            console.error("Error searching guests:", err);
+            res
+              .status(500)
+              .json({ message: "Error searching guests", error: err.message });
+          });
+      }
+    );
 
   router
     .route("/:guestId")

@@ -74,7 +74,7 @@ function UserRouter() {
         });
     });
 
-  router.route("/search").get(function (req, res, next) {
+  router.route("/search").get(Users.authorize([scopes["admin"], scopes["chef"], scopes["employee"]]), function (req, res, next) {
     const { field, value } = req.query;
 
     if (!field || !value) {
