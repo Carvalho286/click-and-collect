@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
-let userSchema = new Schema({
+let guestSchema = new Schema({
   name: {
     type: "string",
     required: true,
@@ -16,14 +16,14 @@ let userSchema = new Schema({
   },
   address: {
     type: "string",
-    required: true,
+    required: false,
   },
   postalCode: {
     type: "string",
-    required: true,
+    required: false,
   },
 });
 
-let user = mongoose.model("User", userSchema);
+let guest = mongoose.model("Guest", guestSchema);
 
-module.exports = user;
+module.exports = guest;
