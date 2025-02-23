@@ -11,6 +11,7 @@ function UserService(UserModel) {
     findOne,
     findAll,
     findById,
+    findByField,
     update,
     removeById,
     authorize,
@@ -138,39 +139,49 @@ function UserService(UserModel) {
     });
   }
 
+  function findByField(field, value) {
+    return new Promise((resolve, reject) => {
+      if (typeof value !== "string") {
+        return reject(new Error(`Invalid ${field} parameter`));
+      }
+
+      const regex = new RegExp(value, "i");
+
+      if (!["name", "email", "phone"].includes(field)) {
+        return reject(new Error("Invalid search field"));
+      }
+
+      UserModel.find({ [field]: { $regex: regex } }, function (err, users) {
+        if (err) return reject(err);
+        resolve(users);
+      });
+    });
+  }
+
   function update(userId, userUpdates) {
     return new Promise(async (resolve, reject) => {
       try {
         if (userUpdates.password) {
           userUpdates.password = await createPassword(userUpdates.password);
         }
-  
-        let updatedUser = await UserModel.findByIdAndUpdate(userId, userUpdates, {
-          new: true, // Return the updated user
-          runValidators: true, // Ensure validation is applied
-        });
-  
+
+        let updatedUser = await UserModel.findByIdAndUpdate(
+          userId,
+          userUpdates,
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
         if (!updatedUser) {
           return reject(new Error("User not found"));
         }
-  
+
         resolve(updatedUser);
       } catch (err) {
         reject(err);
       }
-    });
-  }
-  
-
-  function secondUpdate(id, newUser) {
-    return new Promise(function (resolve, reject) {
-      UserModel.findByIdAndUpdate(id, newUser, function (err, lol) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve("User updated successfully with " + lol);
-        }
-      });
     });
   }
 

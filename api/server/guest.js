@@ -16,10 +16,10 @@ function GuestRouter() {
     let guest = req.body;
     Guests.create(guest)
       .then((newGuest) => {
-        res.status(201).send(newGuest); // Send response and complete the request cycle
+        res.status(201).send(newGuest); 
       })
       .catch((err) => {
-        res.status(400).send({ error: "Bad request" }); // Handle error response
+        res.status(400).send({ error: "Bad request" }); 
       });
   });
 
@@ -33,10 +33,10 @@ function GuestRouter() {
       function (req, res) {
         Guests.findAll()
           .then((guests) => {
-            res.status(200).send(guests); // Send response and complete the request cycle
+            res.status(200).send(guests);
           })
           .catch((err) => {
-            res.status(404).send({ error: "Guests not found" }); // Handle error response
+            res.status(404).send({ error: "Guests not found" }); 
           });
       }
     )
@@ -46,10 +46,10 @@ function GuestRouter() {
         let guest = req.body;
         Guests.create(guest)
           .then((newGuest) => {
-            res.status(201).send(newGuest); // Send response and complete the request cycle
+            res.status(201).send(newGuest); 
           })
           .catch((err) => {
-            res.status(400).send({ error: "Bad request" }); // Handle error response
+            res.status(400).send({ error: "Bad request" });
           });
       }
     );
@@ -59,10 +59,10 @@ function GuestRouter() {
     .delete(Users.authorize([scopes["admin"]]), function (req, res) {
       Guests.clear()
         .then(() => {
-          res.status(204).send("Guests deleted successfully"); // Send response and complete the request cycle
+          res.status(204).send("Guests deleted successfully"); 
         })
         .catch((err) => {
-          res.status(404).json({ error: "Failed to delete guests" }); // Handle error response
+          res.status(404).json({ error: "Failed to delete guests" });
         });
     });
 
@@ -75,10 +75,10 @@ function GuestRouter() {
 
         Guests.findById(guestId)
           .then((guest) => {
-            res.status(200).send(guest); // Send response and complete the request cycle
+            res.status(200).send(guest);
           })
           .catch((err) => {
-            res.status(404).send({ error: "Guest not found" }); // Handle error response
+            res.status(404).send({ error: "Guest not found" });
           });
       }
     )
@@ -86,10 +86,10 @@ function GuestRouter() {
       let guestId = req.params.guestId;
       Guests.removeById(guestId)
         .then(() => {
-          res.status(204).send(); // Send response and complete the request cycle
+          res.status(204).send();
         })
         .catch((err) => {
-          res.status(404).send({ error: "Failed to delete guest" }); // Handle error response
+          res.status(404).send({ error: "Failed to delete guest" });
         });
     });
 
