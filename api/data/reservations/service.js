@@ -1,6 +1,11 @@
+const mongoose = require("mongoose");
+
 function ReservationService(ReservationModel) {
   let service = {
     create,
+    update,
+    findById,
+    findByUserId,
     findAll,
     changeStatus,
   };
@@ -16,6 +21,54 @@ function ReservationService(ReservationModel) {
         if (err) reject(err);
         resolve("Reservation created successfully");
       });
+    });
+  }
+
+  function update(id, values) {
+    return new Promise(function (resolve, reject) {
+      ReservationModel.findByIdAndUpdate(
+        id,
+        values,
+        function (err, reservation) {
+          if (err) reject(err);
+          resolve("Reservation updated successfully \n" + reservation);
+        }
+      );
+    });
+  }
+
+  function findById(id) {
+    return new Promise(function (resolve, reject) {
+      ReservationModel.findById(id, function (err, reservation) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        if (!reservation) {
+          reject(new Error("Reservation not found"));
+          return;
+        }
+
+        console.log("Reservation found:", reservation);
+        resolve(reservation);
+      });
+    });
+  }
+
+  function findByUserId(userId) {
+    return new Promise(function (resolve, reject) {
+      const userObjectId = mongoose.Types.ObjectId(userId);
+
+      ReservationModel.find(
+        {
+          $or: [{ client: userObjectId }, { guest: userObjectId }],
+        },
+        function (err, reservations) {
+          if (err) reject(err);
+          resolve(reservations);
+        }
+      );
     });
   }
 
