@@ -1,6 +1,7 @@
 function DishService(DishModel) {
   let service = {
     create,
+    find,
     findAll,
     findById,
     update,
@@ -20,6 +21,15 @@ function DishService(DishModel) {
       newDish.save(function (err) {
         if (err) reject(err);
         resolve("Dish created successfully");
+      });
+    });
+  }
+
+  function find(query) {
+    return new Promise(function (resolve, reject) {
+      DishModel.find(query, function (err, dishes) {
+        if (err) reject(err);
+        resolve(dishes);
       });
     });
   }
@@ -86,7 +96,7 @@ function DishService(DishModel) {
         return reject(new Error("Invalid name parameter"));
       }
 
-      const regex = new RegExp("^" + name, "i"); 
+      const regex = new RegExp("^" + name, "i");
 
       DishModel.find({ name: { $regex: regex } }, function (err, dishes) {
         if (err) return reject(err);
