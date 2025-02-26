@@ -1,6 +1,7 @@
 const config = require("./config");
 const express = require("express");
 const http = require("http");
+const path = require("path");
 var mongoose = require("mongoose");
 
 const hostname = "localhost";
@@ -9,6 +10,7 @@ let router = require("./router");
 
 var app = express();
 app.use(router.initialize());
+app.use("/images", express.static(path.join(__dirname, "images")));
 const server = http.Server(app);
 mongoose
   .connect(config.db)
