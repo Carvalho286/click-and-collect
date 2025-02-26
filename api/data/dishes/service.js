@@ -76,7 +76,7 @@ function DishService(DishModel) {
         DishModel.find(
           {
             categories: {
-              $in: categories.map((cat) => new RegExp(`^${cat}$`, "i")),
+              $all: categories.map((cat) => new RegExp(cat, "i")),
             },
           },
           function (err, dishes) {
