@@ -14,6 +14,76 @@ function ReservationRouter() {
   router.use(bodyParser.json({ limit: "100mb" }));
   router.use(bodyParser.json({ limit: "100mb", extended: true }));
 
+  router.route("/regist").post(async (req, res) => {
+    try {
+      const { client, guest, dishes, reservationTime } = req.body;
+
+      if (!client && !guest) {
+        return res.status(400).json({
+          message: "Either client (userId) or guest (guestId) is required",
+        });
+      }
+      if (client && guest) {
+        return res
+          .status(400)
+          .json({ message: "Provide either client or guest, not both" });
+      }
+
+      if (client) {
+        const userExists = await Users.findById(client);
+        if (!userExists)
+          return res.status(404).json({ message: "Client not found" });
+      } else {
+        const guestExists = await Guests.findById(guest);
+        if (!guestExists)
+          return res.status(404).json({ message: "Guest not found" });
+      }
+
+      if (!dishes || !Array.isArray(dishes) || dishes.length === 0) {
+        return res
+          .status(400)
+          .json({ message: "At least one dish is required" });
+      }
+
+      const formattedDishes = dishes.map((dish) => ({
+        dishId: new mongoose.Types.ObjectId(dish.dishId),
+        quantity: dish.quantity,
+      }));
+
+      const dishIds = formattedDishes.map((dish) => dish.dishId);
+      const foundDishes = await Dishes.find({ _id: { $in: dishIds } });
+
+      if (foundDishes.length !== dishIds.length) {
+        return res
+          .status(404)
+          .json({ message: "One or more dishes not found" });
+      }
+
+      const totalPrice = formattedDishes.reduce((total, item) => {
+        const dish = foundDishes.find((d) => d._id.equals(item.dishId));
+        return total + dish.price * item.quantity;
+      }, 0);
+
+      const newReservation = {
+        dishes: formattedDishes,
+        client: client ? new mongoose.Types.ObjectId(client) : undefined,
+        guest: guest ? new mongoose.Types.ObjectId(guest) : undefined,
+        totalPrice,
+        reservationTime: new Date(reservationTime),
+      };
+
+      await Reservations.create(newReservation);
+
+      res.status(201).json(newReservation);
+    } catch (error) {
+      console.error("Error creating reservation:", error);
+      res.status(500).json({
+        message: "Error creating reservation",
+        error: error.message,
+      });
+    }
+  });
+
   router.use(cookieParser());
   router.use(verifyToken);
 
