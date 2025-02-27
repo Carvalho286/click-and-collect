@@ -10,7 +10,7 @@ function Login() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Submitting data:", data); 
+    console.log("Submitting data:", data);
     postUser(data);
   };
 
@@ -25,9 +25,9 @@ function Login() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log("Response status:", response.status); 
+        console.log("Response status:", response.status);
         if (response.ok) {
-          nav("/"); 
+          nav("/");
         } else {
           alert("Wrong email or password. Please try again.");
         }
@@ -42,10 +42,7 @@ function Login() {
       <div className="row">
         <div className="colm-logo">
           <Link to="/">
-            <img
-              src="/public/images/logo.jpg"
-              alt=""
-            />
+            <img src="/public/images/logo.jpg" alt="" />
           </Link>
         </div>
         <div className="colm-form">

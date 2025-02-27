@@ -10,7 +10,7 @@ function Logout() {
       .then((response) => {
         if (response.status === 202) {
         } else {
-            nav("/");
+          nav("/");
         }
       })
       .catch(() => {

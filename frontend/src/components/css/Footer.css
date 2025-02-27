@@ -1,22 +1,22 @@
 .footer {
-  background-color: #212529; /* Dark background */
-  color: white; /* Light text */
-  text-align: center; /* Center the text */
-  padding: 15px 0; /* Padding for spacing */
-  font-size: 14px; /* Font size */
-  font-weight: 500; /* Slightly bold text */
-  position: fixed; /* Fixed at the bottom */
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: 500;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .footer a {
   text-decoration: none;
-  color: #ebb810; /* Yellow color for links */
+  color: #ebb810;
 }
 
 .footer a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }

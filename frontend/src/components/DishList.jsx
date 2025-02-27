@@ -4,7 +4,6 @@ import { addToCart } from "../utils/cartUtils";
 import axios from "axios";
 import "./css/DishList.css";
 
-
 function DishList() {
   const [dishes, setDishes] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -96,16 +95,19 @@ function DishList() {
         <div className="dish-list">
           {currentDishes.map((dish) => (
             <div className="dish-card" key={dish._id}>
-            <Link to={`/dish/${dish._id}`} className="dish-card-content">
-              <img src={`${dish.imageUrl}`} alt={dish.name} />
-              <h3>{dish.name}</h3>
-              <p>{dish.description}</p>
-              <strong>{dish.price}€</strong>
-            </Link>
-            {/* <button className="add-to-cart-btn"></button> */}
-            {/* <button className="add-to-cart-btn"><img src="/public/images/add-cart.png" /></button> */}
-            <button className="add-to-cart-btn" onClick={() => addToCart(dish)}><img src="/public/images/plus.png" /></button>
-          </div>                   
+              <Link to={`/dish/${dish._id}`} className="dish-card-content">
+                <img src={`${dish.imageUrl}`} alt={dish.name} />
+                <h3>{dish.name}</h3>
+                <p>{dish.description}</p>
+                <strong>{dish.price}€</strong>
+              </Link>
+              <button
+                className="add-to-cart-btn"
+                onClick={() => addToCart(dish)}
+              >
+                <img src="/public/images/plus.png" />
+              </button>
+            </div>
           ))}
         </div>
 

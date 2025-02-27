@@ -7,25 +7,25 @@ const Cart = ({ isOpen, toggleCart }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    setCart(getCart()); // Update cart whenever it opens
+    setCart(getCart());
   }, [isOpen]);
 
   useEffect(() => {
-    const updateCart = () => setCart(getCart()); // Function to update cart
+    const updateCart = () => setCart(getCart());
 
-    window.addEventListener("cartUpdated", updateCart); // Listen for cart updates
+    window.addEventListener("cartUpdated", updateCart);
 
-    return () => window.removeEventListener("cartUpdated", updateCart); // Cleanup
+    return () => window.removeEventListener("cartUpdated", updateCart);
   }, []);
 
   const handleRemove = (dishId) => {
     removeFromCart(dishId);
-    setCart(getCart()); // Update cart immediately
+    setCart(getCart());
   };
 
   const handleClear = () => {
     clearCart();
-    setCart([]); // Empty cart
+    setCart([]);
   };
 
   return (

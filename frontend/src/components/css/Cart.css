@@ -1,146 +1,145 @@
-/* Modern Cart Sidebar with Rounded Corners */
 .cart-sidebar {
-    position: fixed;
-    top: 0;
-    right: -350px;
-    width: 350px;
-    height: 100%;
-    background: #fff;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    z-index: 1000;
-    border-radius: 20px 0 0 20px; /* Arredondado apenas no lado esquerdo */
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 20px 0 0 20px;
 }
-  
-  .cart-sidebar.open {
-    right: 0;
-  }
-  
-  .cart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 999;
-    border-radius: 12px;
-  }
-  
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    align-self: flex-end;
-    border-radius: 50%; /* Botão de fechar arredondado */
-    padding: 5px;
-    transition: 0.3s;
-  }
-  
-  .close-btn:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-  
-  h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .cart-sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .cart-sidebar li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    border-radius: 12px; /* Bordas arredondadas para cada item */
-    background: #f9f9f9;
-    padding: 12px;
-    margin-bottom: 10px;
-  }
 
-  .cart-sidebar li button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 50%;
-    padding: 8px;
-    transition: background 0.3s ease-in-out;
+.cart-sidebar.open {
+  right: 0;
+}
+
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  border-radius: 12px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-self: flex-end;
+  border-radius: 50%;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.cart-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-sidebar li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  border-radius: 12px;
+  background: #f9f9f9;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.cart-sidebar li button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 8px;
+  transition: background 0.3s ease-in-out;
 }
 
 .cart-sidebar li button:hover {
-    background: rgba(255, 0, 0, 0.1); /* Efeito vermelho suave ao passar o mouse */
+  background: rgba(255, 0, 0, 0.1);
 }
-  
-  .cart-sidebar img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 12px; /* Imagens arredondadas */
-  }
-  
-  .item-info {
-    flex-grow: 1;
-    margin-left: 10px;
-  }
-  
-  .clear-btn, .checkout-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 12px; /* Bordas bem arredondadas */
-    cursor: pointer;
-    transition: 0.3s;
+
+.cart-sidebar img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 12px;
 }
-  .clear-btn {
-    font-family: inherit;
-    background: #ff4d4d;
-    color: white;
+
+.item-info {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.clear-btn,
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.clear-btn {
+  font-family: inherit;
+  background: #ff4d4d;
+  color: white;
 }
 
 .clear-btn:hover {
-    background: #cc0000;
+  background: #cc0000;
 }
 
 .checkout-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-decoration: none; /* Remove sublinhado do Link */
-    font-family: inherit; /* Mantém a mesma fonte usada no restante do site */
-    font-size: 16px; /* Mesmo tamanho da fonte dos nomes dos pratos */
-    font-weight: bold;
-    background: #4caf50;
-    color: white;
-    padding: 12px;
-    border-radius: 12px;
-    transition: 0.3s;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  background: #4caf50;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  transition: 0.3s;
+  width: 100%;
 }
 
 .checkout-btn:hover {
-    background: #388e3c;
+  background: #388e3c;
 }
 
-  .cart-footer {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 20px;
+.cart-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
 }
-  

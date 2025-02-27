@@ -7,7 +7,7 @@ export const addToCart = (dish) => {
   cart.push(dish);
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  window.dispatchEvent(new Event("cartUpdated")); // Trigger event to update cart
+  window.dispatchEvent(new Event("cartUpdated"));
 };
 
 export const removeFromCart = (dishId) => {

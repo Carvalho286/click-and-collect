@@ -2,7 +2,6 @@ body {
   overflow-x: hidden;
 }
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -12,8 +11,8 @@ body {
   background-color: white;
   z-index: 1000;
   width: 100%;
-  padding: 10px 20px; /* Add padding for better spacing */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header__icon {
@@ -27,60 +26,58 @@ body {
 .header__right {
   display: flex;
   align-items: center;
-  justify-content: space-evenly; /* Ensures equal spacing between buttons */
+  justify-content: space-evenly;
   width: auto;
   margin-right: 40px;
-  gap: 15px; /* Added gap between the buttons */
+  gap: 15px;
 }
 
 .nav-link {
-  background-color: #cca257; /* Yellow base color */
+  background-color: #cca257;
   border: none;
-  border-radius: 8px; /* Rounded corners */
-  font-size: 16px; /* Larger font size for better readability */
-  padding: 10px 20px; /* Slightly larger padding for a more clickable button */
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
   color: #ffffff;
-  font-weight: 600; /* Bold text */
-  height: 45px; /* Increased height for better visibility */
-  text-align: center; /* Center text */
+  font-weight: 600;
+  height: 45px;
+  text-align: center;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link:hover {
-  background-color: #f9b100; /* Slightly lighter yellow on hover */
-  transform: translateY(-2px); /* Lift the button on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow effect on hover */
+  background-color: #f9b100;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link:active {
-  background-color: #e8a700; /* Darker yellow on click */
-  transform: translateY(0); /* Button returns to original position */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Reset shadow */
+  background-color: #e8a700;
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 a {
   text-decoration: none;
-  color: inherit; /* Inherit color from the button */
+  color: inherit;
 }
 
 a:focus {
-  outline: none; /* Remove the outline when focused */
+  outline: none;
 }
 
-/* For small screens */
 @media (max-width: 768px) {
   .nav-link {
-    padding: 8px 18px; /* Adjust padding for smaller screens */
-    font-size: 14px; /* Slightly smaller font size */
+    padding: 8px 18px;
+    font-size: 14px;
   }
 }
 
-
-/* Responsive design */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -99,6 +96,6 @@ a:focus {
   }
 
   .nav-link {
-    padding: 6px 14px; /* Slightly reduced padding for smaller screens */
+    padding: 6px 14px;
   }
 }

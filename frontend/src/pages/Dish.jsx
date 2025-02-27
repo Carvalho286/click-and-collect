@@ -38,12 +38,10 @@ const Dish = () => {
     <>
       <Header toggleCart={() => setIsCartOpen(!isCartOpen)} />
       <div className="dish-detail-container">
-        {/* Left: Large Image */}
         <div className="dish-image-container">
           <img src={dish.imageUrl} alt={dish.name} className="dish-image" />
         </div>
 
-        {/* Right: Dish Details */}
         <div className="dish-info">
           <h1>{dish.name}</h1>
           <p className="dish-description">{dish.description}</p>
@@ -60,9 +58,17 @@ const Dish = () => {
               <strong>Sides:</strong> {dish.sides.join(", ")}
             </p>
           )}
-          <button className="add-to-cart-button" onClick={() => addToCart(dish)}>Add to Cart</button>
+          <button
+            className="add-to-cart-button"
+            onClick={() => addToCart(dish)}
+          >
+            Add to Cart
+          </button>
         </div>
-        <Cart isOpen={isCartOpen} toggleCart={() => setIsCartOpen(!isCartOpen)} /> {/* Pass state to Cart */}
+        <Cart
+          isOpen={isCartOpen}
+          toggleCart={() => setIsCartOpen(!isCartOpen)}
+        />
       </div>
     </>
   );

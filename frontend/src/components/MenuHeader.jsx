@@ -13,7 +13,11 @@ function MenuHeader({ toggleCart }) {
       </Link>
       <div className="header__right">
         <button className="header__cart-btn" onClick={toggleCart}>
-          <img className="header__cart" src="/public/images/cart.png" alt="Cart" />
+          <img
+            className="header__cart"
+            src="/public/images/cart.png"
+            alt="Cart"
+          />
         </button>
       </div>
     </header>

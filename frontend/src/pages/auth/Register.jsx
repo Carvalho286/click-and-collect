@@ -78,7 +78,9 @@ const Register = () => {
               placeholder="Password"
               {...register("password", { required: "Password is required" })}
             />
-            {errors.password && <p className="error">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="error">{errors.password.message}</p>
+            )}
 
             <input
               type="text"
@@ -98,7 +100,9 @@ const Register = () => {
               placeholder="Address"
               {...register("address", { required: "Address is required" })}
             />
-            {errors.address && <p className="error">{errors.address.message}</p>}
+            {errors.address && (
+              <p className="error">{errors.address.message}</p>
+            )}
 
             <input
               type="text"
@@ -111,7 +115,9 @@ const Register = () => {
                 },
               })}
             />
-            {errors.postalCode && <p className="error">{errors.postalCode.message}</p>}
+            {errors.postalCode && (
+              <p className="error">{errors.postalCode.message}</p>
+            )}
 
             <button className="botao3" type="submit">
               Create account
