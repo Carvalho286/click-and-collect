@@ -1,0 +1,108 @@
+/* Ensure the main container takes the full page */
+.dish-detail-container {
+    display: flex;
+    width: 100vw; /* Full width */
+    height: calc(100vh - 80px); /* Full height minus navbar */
+    background: #fff;
+    border-radius: 0; /* Remove rounded corners */
+    overflow: hidden;
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  /* Image container fills half the screen */
+  .dish-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .dish-image {
+    width: 90%;
+    max-width: 70%; /* Bigger image */
+    max-height: 70%;
+    height: auto;
+    border-radius: 15px;
+  }
+  
+  /* Details section takes the rest */
+  .dish-info {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Make text bigger for better readability */
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .dish-description {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .dish-price {
+    font-size: 26px;
+    font-weight: bold;
+    color: #cea052;
+  }
+  
+  /* Make the button bigger */
+  .add-to-cart-button {
+    padding: 18px;
+    background: #d4a353; /* Warm golden tone */
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px; /* Softer rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 3%;
+    margin-left: 15%;
+    width: 50%;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hover effect */
+  .add-to-cart-button:hover {
+    background: #bb8b37;
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Click effect */
+  .add-to-cart-button:active {
+    transform: scale(0.98);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .dish-detail-container {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .dish-image-container {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .dish-info {
+      padding: 40px;
+      text-align: center;
+    }
+  
+    .add-to-cart-button {
+      width: 100%;
+    }
+  }
+  

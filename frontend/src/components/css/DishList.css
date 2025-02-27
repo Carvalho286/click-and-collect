@@ -1,0 +1,221 @@
+body {
+    font-size: larger;
+}
+
+.menu-container {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #d4af37; /* Gold accent */
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar:focus {
+  border-color: #b38b00; /* Darker gold on focus */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-bar::placeholder {
+  color: #777;
+  font-style: italic;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+}
+
+.sidebar li:hover {
+  background: #ddd;
+}
+
+.sidebar li.active {
+  background: #cea052;
+  color: white;
+}
+
+.dish-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Ensures pagination is placed under */
+  align-items: center; /* Centering pagination */
+}
+
+.dish-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 2 dishes per row */
+  gap: 25px; /* Added spacing between cards */
+  width: 100%;
+  max-width: 70%;
+}
+
+.dish-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  position: relative; /* Needed for absolute positioning */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dish-card-content {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.dish-card:hover {
+  transform: scale(1.05);
+}
+
+.dish-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.dish-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dish-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.dish-card strong {
+  color: #cea052;
+}
+
+.add-to-cart-btn {
+  background: #f7f4f4; /* Red background */
+  box-shadow: 1px 15px 25px rgba(0, 0, 0, 0.1);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px; 
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background: #ffffff; /* Darker red */
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.95);
+}
+
+.add-to-cart-btn img {
+  width: 15px;  /* Adjust size as needed */
+  height: 15px;
+  display: block;
+}
+
+
+/* Centered Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  background: #cea052;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.pagination button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #cea052;
+}
+
+.pagination span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .dish-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dish-list {
+    grid-template-columns: repeat(1, 1fr); /* 1 per row on small screens */
+  }
+}

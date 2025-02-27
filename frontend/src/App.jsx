@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
+import Menu from "./pages/Menu";
+import Cart from "./components/Cart";
+import Dish from "./pages/Dish";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Logout from "./components/Logout";
@@ -29,6 +32,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/menu" element={<Menu />} />
+      <Route path="/dish/:id" element={<Dish />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/logout" element={<Logout />} />
