@@ -21,12 +21,6 @@ function Header({ isAuthenticated }) {
           </>
         ) : (
           <>
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
             <Link to="/menu" className="nav-link">
               Show Menu
             </Link>

@@ -1,0 +1,59 @@
+.payment-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  h3 {
+    font-size: 16px;
+    color: #444;
+  }
+  
+  select,
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  input[type="submit"] {
+    background: #ff4d4d;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background: #cc0000;
+  }
+  
+  @media (max-width: 600px) {
+    .payment-container {
+      width: 90%;
+    }
+  }
+  
